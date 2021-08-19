@@ -1,9 +1,9 @@
 #!/usr/bin/env node
-'use strict';
-const fs = require('fs');
-const meow = require('meow');
-const getStdin = require('get-stdin');
-const stripIndent = require('strip-indent');
+import process from 'node:process';
+import fs from 'node:fs';
+import meow from 'meow';
+import getStdin from 'get-stdin';
+import stripIndent from 'strip-indent';
 
 const cli = meow(`
 	Usage
@@ -14,7 +14,9 @@ const cli = meow(`
 	  $ echo '\\tunicorn\\n\\t\\tcake' | strip-indent
 	  unicorn
 	  \tcake
-`);
+`, {
+	importMeta: import.meta,
+});
 
 const input = cli.input[0];
 
@@ -30,5 +32,7 @@ if (!input && process.stdin.isTTY) {
 if (input) {
 	init(fs.readFileSync(input, 'utf8'));
 } else {
-	getStdin().then(init);
+	(async () => {
+		init(await getStdin());
+	})();
 }

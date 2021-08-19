@@ -4,13 +4,11 @@
 
 The line with the least number of leading whitespace, ignoring empty lines, determines the number to remove.
 
-
 ## Install
 
 ```
 $ npm install --global strip-indent-cli
 ```
-
 
 ## Usage
 
@@ -27,12 +25,6 @@ $ strip-indent --help
         cake
 ```
 
-
 ## Related
 
 - [strip-indent](https://github.com/sindresorhus/strip-indent) - API for this module
-
-
-## License
-
-MIT © [Sindre Sorhus](https://sindresorhus.com)
